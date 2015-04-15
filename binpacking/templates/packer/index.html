@@ -1,0 +1,73 @@
+{% load staticfiles %}
+<html>
+<head>
+	<title>My first Three.js app</title>
+	<style>
+		body { margin: 0; }
+		canvas { width: 100%; height: 100% }
+	</style>
+</head>
+	<body>
+		<link href="{% static "packer/css/style.css" %}" type="text/css" rel="stylesheet"/>
+		
+		<script src="{% static "packer/js/three.min.js" %}"></script>
+		<script src="{% static "packer/js/OrbitControls.js" %}"></script>
+		<script src="{% static "packer/js/jquery-1.11.2.min.js" %}"></script>
+		<script src="{% static "packer/js/pack.js" %}"></script>
+	<style>
+	</style>
+	<div class="taskProperties">
+		<div class="lineHeader">Algorithm</div>
+		<div class="igorithmSelect">
+			<div>
+				<input id="general" type="radio" name="algorithm" value="general" checked/>
+				<label for="general">General</label>
+			</div>
+			<div>
+				<input id="heurictic" type="radio" name="algorithm" value="Heurictic" disabled/>
+				<label for="heurictic">Heurictic</label>
+			</div>
+			<div>
+				<input id="robot" type="radio" name="algorithm" value="Robot" disabled/>
+				<label for="robot">Robot</label>
+			</div>
+		</div>
+		<div class="clearfix">
+			<button id="start" class="startButton">Start</button>
+		</div>
+		
+		<div class="lineHeader">Bin</div>
+
+		<div id="binRaw" class="boxRaw">
+			<div>
+				<ul class="sizesHeader">
+					<li>width</li>
+					<li>height</li>
+					<li>depth</li>
+					<li>number</li>
+				</ul>
+			</div>
+			<div class="boxName"></div>
+			<input type="text" name="w" value="10"/>
+			<input type="text" name="h" value="10"/>
+			<input type="text" name="d" value="10"/>
+			<input type="text" name="n" disabled checked/>
+		</div>
+		
+		<div class="lineHeader">Boxes</div>
+	
+		<div id="boxContainer">
+			<div id="boxRaw" class="boxRaw">
+				<div class="boxName"></div>
+				<input type="text" name="w" value="2"/>
+				<input type="text" name="h" value="2"/>
+				<input type="text" name="d" value="2"/>
+				<input type="text" name="n" value="1"/>
+			</div>
+		</div>
+		
+		<button id="add" class="addBoxButton">Add</button>
+	</div>
+	<div id="screen" style="float: right; width: 500px; height: 500px;"></div>
+	</body>
+</html>
