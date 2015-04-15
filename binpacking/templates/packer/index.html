@@ -16,9 +16,10 @@
 		<script src="{% static "packer/js/pack.js" %}"></script>
 	<style>
 	</style>
-	<div class="taskProperties">
-		<div class="lineHeader">Algorithm</div>
-		<div class="igorithmSelect">
+	<div class="task_properties">
+		<div class="header">Algorithm</div>
+
+		<div class="algorithm-selection">
 			<div>
 				<input id="general" type="radio" name="algorithm" value="general" checked/>
 				<label for="general">General</label>
@@ -32,11 +33,16 @@
 				<label for="robot">Robot</label>
 			</div>
 		</div>
-		<div class="clearfix">
-			<button id="start" class="startButton">Start</button>
+
+		<div class="control_panel clearfix">
+			<button id="start" class="button">Start</button>
 		</div>
-		
-		<div class="lineHeader">Bin</div>
+<!--
+		<div class="control_panel clearfix">
+			<button id="clear" class="button">Clear</button>
+		</div>
+-->
+		<div class="header">Bin</div>
 
 		<div id="binRaw" class="boxRaw">
 			<div>
@@ -47,27 +53,53 @@
 					<li>number</li>
 				</ul>
 			</div>
-			<div class="boxName"></div>
 			<input type="text" name="w" value="10"/>
 			<input type="text" name="h" value="10"/>
 			<input type="text" name="d" value="10"/>
 			<input type="text" name="n" disabled checked/>
 		</div>
 		
-		<div class="lineHeader">Boxes</div>
+		<div class="header clearfix">Boxes</div>
 	
 		<div id="boxContainer">
 			<div id="boxRaw" class="boxRaw">
-				<div class="boxName"></div>
+				<input type="text" name="w" value="1"/>
+				<input type="text" name="h" value="1"/>
+				<input type="text" name="d" value="1"/>
+				<input type="text" name="n" value="1"/>
+			</div>
+			<div class="boxRaw">
 				<input type="text" name="w" value="2"/>
 				<input type="text" name="h" value="2"/>
 				<input type="text" name="d" value="2"/>
 				<input type="text" name="n" value="1"/>
 			</div>
+			<div class="boxRaw">
+				<input type="text" name="w" value="3"/>
+				<input type="text" name="h" value="3"/>
+				<input type="text" name="d" value="3"/>
+				<input type="text" name="n" value="1"/>
+			</div>
+			<div class="boxRaw">
+				<input type="text" name="w" value="4"/>
+				<input type="text" name="h" value="4"/>
+				<input type="text" name="d" value="4"/>
+				<input type="text" name="n" value="1"/>
+			</div>
+			<div class="boxRaw">
+				<input type="text" name="w" value="5"/>
+				<input type="text" name="h" value="5"/>
+				<input type="text" name="d" value="5"/>
+				<input type="text" name="n" value="1"/>
+			</div>
 		</div>
-		
-		<button id="add" class="addBoxButton">Add</button>
+
+        <div class="control_panel clearfix">
+		    <button id="add" class="button">Add</button>
+            <button id="delete" class="button">Delete</button>
+        </div>
 	</div>
+
 	<div id="screen" style="float: right; width: 500px; height: 500px;"></div>
 	</body>
 </html>
