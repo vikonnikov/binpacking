@@ -113,7 +113,9 @@ $( document ).ready(function(){
 			});
 		});
 		
-		$.get('/pack/', {bin: JSON.stringify(bin), boxes: JSON.stringify(boxes)})
+		var algorithm = $('input[name="algorithm"]:checked').val().toLowerCase();
+		
+		$.get('/pack/', {algorithm: algorithm, bin: JSON.stringify(bin), boxes: JSON.stringify(boxes)})
 	      .done(function (data) {
               clear(scene);
 

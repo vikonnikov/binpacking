@@ -7,14 +7,23 @@ from bpp.general.core import TaskInfo
 from bpp.box import Box, Bin
 from bpp.general.general_pack import general_pack
 
+import pyshipping
+from pyshipping.package import Package
+from pyshipping.binpack_simple import binpack
+
+
 # Create your views here.
 
 class IndexPageView(TemplateView):
     template_name = 'packer/index.html'
 
-def parse(d, _class):
+def parse_for_general(d, _class):
     args = [int(d[attr]) for attr in ('w', 'h', 'd')]
     return _class(*args)
+
+def parse_for_heurictic(d, _class):
+    args = [int(d[attr]) for attr in ('w', 'h', 'd')]
+    return _class(args)
 
 # def pack(request):
 #     if request.is_ajax():
@@ -48,17 +57,33 @@ def parse(d, _class):
 
 def pack(request):
     if request.is_ajax():
-        bin = parse(json.loads(request.GET.get('bin')), Bin)
+        algorithm = request.GET.get('algorithm')
+        
+        print algorithm
+        
+        if algorithm == 'general':
+            parse = parse_for_general
+            bin_class = Bin
+            box_class = Box
+        elif algorithm == 'heurictic':
+            parse = parse_for_heurictic
+            bin_class = box_class = Package
+        
+        bin = parse(json.loads(request.GET.get('bin')), bin_class)
 
         boxes = []
         for d in json.loads(request.GET.get('boxes')):
             count = int(d['n'])
             for i in range(count):
-                box = parse(d, Box)
+                box = parse(d, box_class)
                 boxes.append(box)
-
-        info = TaskInfo(bin, boxes)
-        general_pack(info, boxes)
+        
+        if algorithm == 'general':
+            info = TaskInfo(bin, boxes)
+            general_pack(info, boxes)
+        else:
+            binpack(boxes, bin)
+            bin.calc()
 
         data = []
         for box in boxes:
