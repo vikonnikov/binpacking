@@ -28,8 +28,6 @@ class Package(object, Cube):
         >>> Package('300x400x500')
         <Package 500x400x300>
         """
-        print type(size)
-        
         self.weight = weight
         if "x" in size:
             self.heigth, self.width, self.length = [int(x) for x in size.split('x')]

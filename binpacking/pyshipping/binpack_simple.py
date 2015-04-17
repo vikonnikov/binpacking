@@ -102,7 +102,7 @@ def packlayer(bin, packages):
             # Next Layer please
             packages = strip + rest
             break
-        
+
     return strips, (layerx, layersize, layery), packages, dlayer
 
 
@@ -113,8 +113,9 @@ def packbin(bin, packages):
     contentx = 0
     contenty = 0
     binsize = bin.length
-    
+
     dbin = Bin()
+    bin.dbin = dbin
     
     while packages:
         layer, (sizex, sizey, layersize), rest, dlayer = packlayer(bin, packages)
@@ -133,8 +134,6 @@ def packbin(bin, packages):
             # Next Bin please
             packages = layer + rest
             break
-    
-    print dbin
     
     return layers, (contentx, contenty, contentheigth), packages, dbin
 

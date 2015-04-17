@@ -59,8 +59,6 @@ def pack(request):
     if request.is_ajax():
         algorithm = request.GET.get('algorithm')
         
-        print algorithm
-        
         if algorithm == 'general':
             parse = parse_for_general
             bin_class = Bin
@@ -83,7 +81,12 @@ def pack(request):
             general_pack(info, boxes)
         else:
             binpack(boxes, bin)
-            bin.calc()
+            bin.dbin.calc()
+
+        # for layer in bin.dbin.items:
+        #     print 'Layer', layer.items
+        #     for line in layer.items:
+        #         print 'Line', line.items
 
         data = []
         for box in boxes:

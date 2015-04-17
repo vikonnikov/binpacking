@@ -26,8 +26,13 @@ class Cube:
         
     def get_abs_pos(self, coord):
         pos = getattr(self, coord)
+        print coord == 'y' and self.__class__.__name__ == 'Package'
         if self.parent:
-            pos += self.parent.get_abs_pos(coord)
+            if coord == 'y' and self.__class__.__name__ == 'Package':
+                pos = self.parent.y
+            else:
+                pos += self.parent.get_abs_pos(coord)
+
         return pos
     
 #     @property
@@ -54,8 +59,7 @@ class Cube:
         self.x, self.y, self.z = self.coords()
         for item in self.items:
             item.calc()
-            1 / 0
-    
+
     def draw(self, ax=None): pass
 #         if ax is None:
 #             fig = plt.figure()
@@ -99,6 +103,8 @@ class Bin(Cube):
     color = '000000'
     def add(self, layer):
         Cube.add(self, layer)
+
+        print self.items
         
         layer.y = self.l
         

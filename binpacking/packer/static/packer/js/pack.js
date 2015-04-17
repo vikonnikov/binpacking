@@ -69,8 +69,8 @@ $( document ).ready(function(){
 
     var controls = new THREE.OrbitControls( camera, renderer.domElement, screen[0] );
 	
-	var bin_material = new THREE.MeshNormalMaterial({transparent: true, opacity: 0.25});
-    var box_material = new THREE.MeshNormalMaterial({transparent: true, opacity: 0.75});
+	var bin_material = new THREE.MeshNormalMaterial({transparent: true, opacity: 0});
+    var box_material = new THREE.MeshNormalMaterial({transparent: true, opacity: 0.85});
 
     screen.append(renderer.domElement);
 
